@@ -145,8 +145,12 @@ let config = {
     },
     plugins: [
         Taucharts.api.plugins.get('legend')({
-            onSelect({selectedCategories}) {
-                location.hash = 'filter=' + JSON.stringify(selectedCategories);
+            onSelect({type, selectedCategories}) {
+                if(type !== 'reset') {
+                    location.hash = 'filter=' + JSON.stringify(selectedCategories);
+                } else {
+                    location.hash = '';
+                }
             },
             selectedCategories: selectedCategories
         }),
